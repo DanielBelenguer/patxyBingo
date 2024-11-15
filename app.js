@@ -1,3 +1,9 @@
+// Traemos del DOM
+const $numBola = document.getElementById("numBola");
+const $btnSacarBola = document.getElementById("btnSacarBola");
+const $listaNumeros = document.getElementById("listaNumeros");
+
+// Variables Generales
 let registroBolas = [];
 
 function sacarBola() {
@@ -13,8 +19,20 @@ function sacarBola() {
     } while (registroBolas.includes(bola));
     
     // Registramos la bola
-    registroBolas.push(bola);
+    registroBolas[bola] = bola;
 
     // Devolvemos la bola
     return bola;
 }
+
+function actualizarListaNumeros() {
+    $listaNumeros.textContent = registroBolas.join(", ");
+}
+
+// Llamamos a la función para sacar una bola y actualizamos la lista de números
+$btnSacarBola.addEventListener("click", () => {
+        $numBola.textContent = sacarBola();
+        actualizarListaNumeros();
+});
+
+
