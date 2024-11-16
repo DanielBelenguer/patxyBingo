@@ -6,10 +6,20 @@ body {
 }
 
 #numBola {
-    font-size: 70px;
+    font-size: 150px;
     margin-top: 30px;
     color: #2eaf59;
     margin-bottom: 30px;
+    background-color: red;
+    border-radius: 50%;
+    width: 200px;
+    /*      */
+    position: absolute;
+    top: 20%; /* Ajusta este valor según la distancia al borde superior */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Para asegurar que el número esté por encima del botón */ 
+
 }
 
 
@@ -22,7 +32,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 100px 2px;
     cursor: pointer;
     border-radius: 12px;
 }
@@ -47,7 +57,7 @@ body {
     padding: 10px;
 }
 
-.frasenumeros {
+.fraseNumeros {
     text-align: left;
     margin-left: 20px;
 }
