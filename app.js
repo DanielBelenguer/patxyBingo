@@ -120,16 +120,19 @@ function espaciosFila(cartonesEnJuego){
 }
 
 // Llamamos a la función para sacar una bola y actualizamos la lista de números
-$btnSacarBola.addEventListener("click", () => {
-        $numBola.textContent = sacarBola();
-        actualizarListaNumeros();
-});
+
 
 // EMPEZAMOS EL JUEGO
 let jugar = confirm("¿Quieres jugar al bingo?");
 if (jugar) {
     carton(parseInt(prompt("Dime la cantidad de cartones")));
     plantillaRegistroBolas();
+
+    $btnSacarBola.addEventListener("click", () => {
+        $numBola.textContent = sacarBola();
+        actualizarListaNumeros();
+    });
+    
 }else{
     alert("Gracias vuelve pronto");
 }
