@@ -49,47 +49,47 @@ function actualizarListaNumeros() {
 }
 
 function carton(num){
-    var cartonesEnJuego=[];
+    let cartonesEnJuego = [];
     for (let index = 0; index < num; index++) { //Generamos un bucle para crear la cantidad de cartones
-        var tabla=document.createElement("table"); //Creamos el elemento tabla para html
+        let tabla = document.createElement("table"); //Creamos el elemento tabla para html
         tabla.setAttribute("border","1px");
-        var carton=[];
-        for(var cantFilas=0;cantFilas<3;cantFilas++){ //Generamos 3 filas para nuestra tabla
-            var fila=document.createElement("tr");
-            filaCarton=[];
-            for(var cantColumnas=0;cantColumnas<9;cantColumnas++){ //Generamos 9 columnas para nuestra tabla
-                var columna= document.createElement("td");
-                var aleatorio= parseInt(Math.random()*90+1);
+        let carton = [];
+        for(let cantFilas = 0; cantFilas < 3; cantFilas++){ //Generamos 3 filas para nuestra tabla
+            let fila = document.createElement("tr");
+            filaCarton = [];
+            for(let cantColumnas = 0; cantColumnas < 9; cantColumnas++){ //Generamos 9 columnas para nuestra tabla
+                let columna = document.createElement("td");
+                let aleatorio = parseInt(Math.random()*90+1);
                 switch (cantColumnas) {
                     case 0:
-                        var aleatorio = parseInt(Math.random() * 10 + 1); // 1 al 10
+                        aleatorio = parseInt(Math.random() * 10 + 1); // 1 al 10
                         break;
                     case 1:
-                        var aleatorio = parseInt(Math.random() * 10 + 11); // 11 al 20
+                        aleatorio = parseInt(Math.random() * 10 + 11); // 11 al 20
                         break;
                     case 2:
-                        var aleatorio = parseInt(Math.random() * 10 + 21); // 21 al 30
+                        aleatorio = parseInt(Math.random() * 10 + 21); // 21 al 30
                         break;
                     case 3:
-                        var aleatorio = parseInt(Math.random() * 10 + 31); // 31 al 40
+                        aleatorio = parseInt(Math.random() * 10 + 31); // 31 al 40
                         break;
                     case 4:
-                        var aleatorio = parseInt(Math.random() * 10 + 41); // 41 al 50
+                        aleatorio = parseInt(Math.random() * 10 + 41); // 41 al 50
                         break;
                     case 5:
-                        var aleatorio = parseInt(Math.random() * 10 + 51); // 51 al 60
+                        aleatorio = parseInt(Math.random() * 10 + 51); // 51 al 60
                         break;
                     case 6:
-                        var aleatorio = parseInt(Math.random() * 10 + 61); // 61 al 70
+                        aleatorio = parseInt(Math.random() * 10 + 61); // 61 al 70
                         break;
                     case 7:
-                        var aleatorio = parseInt(Math.random() * 10 + 71); // 71 al 80
+                        aleatorio = parseInt(Math.random() * 10 + 71); // 71 al 80
                         break;
                     case 8:
-                        var aleatorio = parseInt(Math.random() * 10 + 81); // 81 al 90
+                        aleatorio = parseInt(Math.random() * 10 + 81); // 81 al 90
                         break;
                 }
-                columna.textContent=aleatorio;
+                columna.textContent = aleatorio;
                 filaCarton.push(aleatorio)
                 fila.appendChild(columna); //Agrega el elemento celda a la fila
             }
@@ -99,12 +99,7 @@ function carton(num){
         cartonesEnJuego.push(carton);
         $carton.appendChild(tabla); //agrega la tabla al body
     }
-    cartonesEnJuego=espaciosFila(cartonesEnJuego);
-    /* for (let index = 0; index < cartonesEnJuego.length; index++) {
-        for(let j=0;j<cartonesEnJuego[index].length;j++){
-            document.write(cartonesEnJuego[index][j]+"<br>");
-        }
-    }*/
+    espaciosFila(cartonesEnJuego);
 }
 
 function espaciosFila(cartonesEnJuego){
@@ -119,7 +114,6 @@ function espaciosFila(cartonesEnJuego){
     return cartonesEnJuego;
 }
 
-// Llamamos a la función para sacar una bola y actualizamos la lista de números
 
 
 // EMPEZAMOS EL JUEGO
