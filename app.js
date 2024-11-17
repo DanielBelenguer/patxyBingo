@@ -24,10 +24,6 @@ function sacarBola() {
     return bola;
 }
 
-function actualizarListaNumeros() {
-    $listaNumeros.textContent = registroBolas.join(", ");
-}
-
 function plantillaRegistroBolas() {
     for (let i = 1; i <= 90; i++) {
         const span = document.createElement("span");
