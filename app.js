@@ -10,21 +10,21 @@ let registroBolas = [];
 function sacarBola() {
     // Comprueba si se han sacado todas las bolas
     if (registroBolas.length >= 90) {
-        throw new Error("Todas las bolas han sido sacadas");
+        alert("¡Ya no quedan más bolas!");
     }
 
     let bola;
-    
+
     do {
         bola = Math.floor(Math.random() * 90) + 1;
     } while (registroBolas.includes(bola));
-    
+
     registroBolas.push(bola);
-    
+
     return bola;
 }
 
-function plantillaRegistroBolas() {
+function plantillaRegistroBolas() { 
     for (let i = 1; i <= 90; i++) {
         const span = document.createElement("span");
         span.textContent = i;
@@ -36,44 +36,65 @@ function plantillaRegistroBolas() {
 }
 
 function actualizarListaNumeros() {
-    registroBolas.forEach(bola => {
+    registroBolas.forEach((bola) => {
         const span = document.getElementById(`bola-${bola}`);
         if (span) {
             span.style.color = "#39FF14"; // Color verde fosforito
         }
     });
+
 }
 
-// Funcion de crear cartones
-function carton(num) {
+function crearCarton(num) {
     let cartonesEnJuego = [];
 
-    for (let index = 0; index < num; index++) { // Generamos un bucle para crear la cantidad de cartones
+    for (let index = 0; index < num; index++) {
+        // Generamos un bucle para crear la cantidad de cartones
         let tabla = document.createElement("table"); // Creamos el elemento tabla para html
         tabla.setAttribute("border", "1px");
 
         let carton = [];
         let numerosUsados = new Set();
 
-        for (var cantFilas = 0; cantFilas < 3; cantFilas++) { // Generamos 3 filas para nuestra tabla
+        for (var cantFilas = 0; cantFilas < 3; cantFilas++) {
+            // Generamos 3 filas para nuestra tabla
             let fila = document.createElement("tr");
 
             let filaCarton = [];
 
-            for (var cantColumnas = 0; cantColumnas < 9; cantColumnas++) { // Generamos 9 columnas para nuestra tabla
+            for (var cantColumnas = 0; cantColumnas < 9; cantColumnas++) {
+                // Generamos 9 columnas para nuestra tabla
                 let columna = document.createElement("td");
                 let aleatorio;
 
                 switch (cantColumnas) {
-                    case 0: aleatorio = generarNumeroUnico(1, 10, numerosUsados); break;
-                    case 1: aleatorio = generarNumeroUnico(11, 20, numerosUsados); break;
-                    case 2: aleatorio = generarNumeroUnico(21, 30, numerosUsados); break;
-                    case 3: aleatorio = generarNumeroUnico(31, 40, numerosUsados); break;
-                    case 4: aleatorio = generarNumeroUnico(41, 50, numerosUsados); break;
-                    case 5: aleatorio = generarNumeroUnico(51, 60, numerosUsados); break;
-                    case 6: aleatorio = generarNumeroUnico(61, 70, numerosUsados); break;
-                    case 7: aleatorio = generarNumeroUnico(71, 80, numerosUsados); break;
-                    case 8: aleatorio = generarNumeroUnico(81, 90, numerosUsados); break;
+                    case 0:
+                        aleatorio = generarNumeroUnico(1, 10, numerosUsados);
+                        break;
+                    case 1:
+                        aleatorio = generarNumeroUnico(11, 20, numerosUsados);
+                        break;
+                    case 2:
+                        aleatorio = generarNumeroUnico(21, 30, numerosUsados);
+                        break;
+                    case 3:
+                        aleatorio = generarNumeroUnico(31, 40, numerosUsados);
+                        break;
+                    case 4:
+                        aleatorio = generarNumeroUnico(41, 50, numerosUsados);
+                        break;
+                    case 5:
+                        aleatorio = generarNumeroUnico(51, 60, numerosUsados);
+                        break;
+                    case 6:
+                        aleatorio = generarNumeroUnico(61, 70, numerosUsados);
+                        break;
+                    case 7:
+                        aleatorio = generarNumeroUnico(71, 80, numerosUsados);
+                        break;
+                    case 8:
+                        aleatorio = generarNumeroUnico(81, 90, numerosUsados);
+                        break;
                 }
 
                 columna.textContent = aleatorio;
@@ -91,9 +112,12 @@ function carton(num) {
 
     // Ordenar las columnas de los cartones
     for (let i = 0; i < cartonesEnJuego.length; i++) {
-        ordenaColumnas(cartonesEnJuego[i], document.getElementsByTagName("table")[i]);
+        ordenaColumnas(
+            cartonesEnJuego[i],
+            document.getElementsByTagName("table")[i]
+        );
     }
-    
+
     // Generar los espacios en blanco
     generarEspaciosBlanco(cartonesEnJuego);
 
@@ -107,7 +131,8 @@ function ordenaColumnas(carton, tabla) {
     for (let columna = 0; columna < columnas; columna++) {
         let columnaValores = [];
         for (let fila = 0; fila < filas; fila++) {
-            if (carton[fila][columna] !== " ") { // Ignoramos los espacios
+            if (carton[fila][columna] !== " ") {
+                // Ignoramos los espacios
                 columnaValores.push(carton[fila][columna]);
             }
         }
@@ -119,12 +144,13 @@ function ordenaColumnas(carton, tabla) {
         for (let fila = 0; fila < filas; fila++) {
             if (carton[fila][columna] !== " ") {
                 carton[fila][columna] = columnaValores[valorIndex];
-                tabla.rows[fila].cells[columna].textContent = columnaValores[valorIndex];
+                tabla.rows[fila].cells[columna].textContent =
+                    columnaValores[valorIndex];
                 valorIndex++;
             }
         }
     }
-}
+} 
 
 function generarNumeroUnico(min, max, numerosUsados) {
     let numero;
@@ -133,12 +159,12 @@ function generarNumeroUnico(min, max, numerosUsados) {
     } while (numerosUsados.has(numero));
     numerosUsados.add(numero);
     return numero;
-}
+} 
 
 function generarEspaciosBlanco(cartonesEnJuego) {
     cartonesEnJuego.forEach((carton, cartonIndex) => {
         let tabla = document.getElementsByTagName("table")[cartonIndex];
-        
+
         // Array para llevar el conteo de espacios en blanco por columna
         let espaciosPorColumna = new Array(9).fill(0);
 
@@ -148,11 +174,15 @@ function generarEspaciosBlanco(cartonesEnJuego) {
 
             while (espaciosEnFila < 4) {
                 // Filtrar columnas que ya tienen 2 espacios en blanco
-                let columnasValidas = columnasDisponibles.filter(col => espaciosPorColumna[col] < 2);
-                
+                let columnasValidas = columnasDisponibles.filter(
+                    (col) => espaciosPorColumna[col] < 2
+                );
+
                 if (columnasValidas.length === 0) break; // Evitar bucle infinito
 
-                let indiceAleatorio = Math.floor(Math.random() * columnasValidas.length);
+                let indiceAleatorio = Math.floor(
+                    Math.random() * columnasValidas.length
+                );
                 let columnaElegida = columnasValidas[indiceAleatorio];
 
                 if (carton[fila][columnaElegida] !== " ") {
@@ -160,7 +190,9 @@ function generarEspaciosBlanco(cartonesEnJuego) {
                     tabla.rows[fila].cells[columnaElegida].textContent = " ";
                     espaciosEnFila++;
                     espaciosPorColumna[columnaElegida]++;
-                    columnasDisponibles = columnasDisponibles.filter(col => col !== columnaElegida);
+                    columnasDisponibles = columnasDisponibles.filter(
+                        (col) => col !== columnaElegida
+                    );
                 }
             }
         }
@@ -179,7 +211,7 @@ function generarEspaciosBlanco(cartonesEnJuego) {
             for (let columna = 0; columna < 9; columna++) {
                 if (carton[fila][columna] === "X") {
                     let min = columna * 10 + 1;
-                    let max = (columna === 8) ? 90 : (columna + 1) * 10;
+                    let max = columna === 8 ? 90 : (columna + 1) * 10;
                     let numero = Math.floor(Math.random() * (max - min + 1)) + min;
                     carton[fila][columna] = numero;
                     tabla.rows[fila].cells[columna].textContent = numero;
@@ -189,26 +221,25 @@ function generarEspaciosBlanco(cartonesEnJuego) {
     });
 }
 
+function checkNum($numBola) {
+// HAY QUE HACER LA FUNCION
+}
 
 
 // EMPEZAMOS EL JUEGO
-let jugar = confirm("¿Quieres jugar al bingo?");
-if (jugar) {
-    
+
     let cantidadCartones = parseInt(prompt("¿Cuantos cartones quieres jugar(MAX. 50)?"));
+    
     if (cantidadCartones <= 50) {
-        carton(cantidadCartones);
-    }else {
+        crearCarton(cantidadCartones);
+    } else {
         alert("El número de cartones no puede ser mayor a 50");
     }
-    //carton(parseInt(prompt("¿Cuantos cartones quieres jugar(MAX. 50)?")));
-    plantillaRegistroBolas();
 
+    plantillaRegistroBolas();
+    
     $btnSacarBola.addEventListener("click", () => {
         $numBola.textContent = sacarBola();
         actualizarListaNumeros();
+        checkNum($numBola.textContent);
     });
-    
-}else{
-    alert("Gracias vuelve pronto");
-}
