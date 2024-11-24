@@ -52,6 +52,7 @@ function crearCarton(num) {
         // Generamos un bucle para crear la cantidad de cartones
         let tabla = document.createElement("table"); // Creamos el elemento tabla para html
         tabla.setAttribute("border", "1px");
+        tabla.classList.add("carton");
 
         let carton = [];
         let numerosUsados = new Set();
@@ -221,10 +222,22 @@ function generarEspaciosBlanco(cartonesEnJuego) {
     });
 }
 
-function checkNum($numBola) {
-// HAY QUE HACER LA FUNCION
-}
+function checkNum(numeroSacado) {
+    const cartones = document.querySelectorAll("table");
 
+    cartones.forEach((carton) => {
+    const filas = carton.rows;
+    for (let i = 0; i < filas.length; i++) {
+    for (let j = 0; j < filas[i].cells.length; j++) {
+        const celda = filas[i].cells[j];
+        if (celda.textContent === numeroSacado) {
+            celda.style.backgroundColor = "lightgreen"; // Color de fondo verde claro
+            celda.style.color = "white"; // Color de texto blanco para mejor contraste
+        }
+    }
+    }
+});
+}
 
 // EMPEZAMOS EL JUEGO
 
@@ -242,4 +255,10 @@ function checkNum($numBola) {
         $numBola.textContent = sacarBola();
         actualizarListaNumeros();
         checkNum($numBola.textContent);
+        if (verificarLinea()) {
+            alert("¡Línea! ");
+        }
+        if (verificarBingo()) {
+            alert("¡Bingo! ");
+        }
     });

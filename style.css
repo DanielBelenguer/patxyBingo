@@ -67,3 +67,21 @@ body {
     list-style: none;
     padding: 0;
 }
+
+/*Estilo para los cartones*/
+
+.carton {
+  /* Estilos básicos para todos los cartones */
+border: 1px solid black;
+border-collapse: collapse;
+margin: 20px;
+padding: 10px;
+}
+
+.celda {
+  /* Estilos básicos para las celdas */
+width: 30px;
+height: 30px;
+text-align: center;
+font-size: 16px;
+}
